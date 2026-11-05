@@ -1,0 +1,47 @@
+name: taller-videos
+x-runtime: &runtime
+  image: ${VIDEO_IMAGE:-taller-videos-runtime:local}
+  build: .
+  init: true
+  user: "${VIDEO_UID:-1000}:${VIDEO_GID:-1000}"
+  working_dir: /app
+  environment:
+    HOME: /tmp
+    BROWSER: none
+  cpus: 2
+  mem_limit: 4g
+  shm_size: 512m
+  security_opt:
+    - no-new-privileges:true
+  volumes:
+    - type: bind
+      source: ${VIDEO_INPUT:-./template}
+      target: /app/project
+      read_only: true
+      bind: {create_host_path: false}
+services:
+  studio:
+    <<: *runtime
+    command: ["node", "runtime/launch.mjs", "studio"]
+    ports:
+      - "127.0.0.1:${VIDEO_PORT:-3100}:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 2s
+      timeout: 3s
+      retries: 45
+      start_period: 5s
+    restart: "no"
+  render:
+    <<: *runtime
+    command: ["node", "runtime/launch.mjs", "render"]
+    volumes:
+      - type: bind
+        source: ${VIDEO_INPUT:-./template}
+        target: /app/project
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: ${VIDEO_OUTPUT:-./template/exports}
+        target: /out
+        bind: {create_host_path: false}

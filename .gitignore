@@ -1,0 +1,34 @@
+# Dependencias y estado local
+node_modules/
+.state/
+__pycache__/
+*.pyc
+
+# Trabajo intermedio y exports de cada proyecto
+projects/*/.work/
+projects/*/exports/
+
+# Audio y video: se respaldan fuera de git (opción A)
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.ogg
+*.aac
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.aup3
+*.f32
+
+# Sistema
+.DS_Store
+*.log
+
+# Notas personales y borradores (se quedan solo en local)
+AGENTS.local.md
+bitacora.md
+reports/consumo-*.md
+content-creator/piezas/*
+!content-creator/piezas/README.md
