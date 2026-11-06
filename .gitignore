@@ -32,3 +32,6 @@ bitacora.md
 reports/consumo-*.md
 content-creator/piezas/*
 !content-creator/piezas/README.md
+
+# Clon ajeno de referencia (yihui-dev/awesome-opus5-5-videos); tiene su propio git
+research_notes/awesome-opus5-5-videos/
