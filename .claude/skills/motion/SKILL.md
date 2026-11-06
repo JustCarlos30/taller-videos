@@ -6,8 +6,8 @@ description: Movimiento de los videos del taller (taller-videos/projects/<slug>)
 # Motion del taller
 
 Aplica y amplía `MOTION.md` (no lo contradice; si dudas, manda MOTION.md). Fuentes: `MOTION.md`,
-`reports/Awesome Opus para el taller.md` (siete fichas, citadas como «ficha X») y el catálogo
-`research_notes/awesome-opus5-5-videos/data/videos.json`. Las reglas marcadas **(criterio propio)** no
+`../canal/investigacion/reports/Awesome Opus para el taller.md` (siete fichas, citadas como «ficha X») y el catálogo
+`../canal/investigacion/research_notes/awesome-opus5-5-videos/data/videos.json`. Las reglas marcadas **(criterio propio)** no
 vienen de una fuente.
 
 ## Cuándo usarla
@@ -89,4 +89,4 @@ const t = interpolate(f, [100, 118], [0, 1], {extrapolateLeft: 'clamp', extrapol
 - [ ] Máx. 3 golpes de nivel 3, cada uno con motivo escrito.
 - [ ] Animación solo por cuadro (sin reloj ni estado): mismo cuadro, mismo resultado.
 - [ ] Revisados cuadros de entrada, acción y salida, y luego la reproducción continua.
-- [ ] Sonido ajustado al final (skill `sonido`); defectos por segundo anotados en `bitacora.md`.
+- [ ] Sonido ajustado al final (skill `sonido`); defectos por segundo anotados en `../canal/bitacora.md`.

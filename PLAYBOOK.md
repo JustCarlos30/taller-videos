@@ -20,8 +20,7 @@ El ahorro se busca cerrando decisiones antes de programar, reutilizando piezas a
 
 Se puede entrar por idea, voz existente o sketchbook; no es obligatorio recorrer
 todas las etapas. El sketchbook se conversa por secuencias en el chat y conserva
-las decisiones. Las guías están en `../content-creator/` o, durante su preparación,
-en `content-creator/` dentro del taller. Los tiempos son provisionales hasta cerrar
+las decisiones. Las guías están en `../canal/workflows/` y las notas en `../canal/piezas/`. Los tiempos son provisionales hasta cerrar
 la voz; la composición puede explorarse antes de grabar.
 
 1. Escribe una frase: «quiero que quien vea esto entienda ___ porque ___».

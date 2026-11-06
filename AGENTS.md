@@ -2,12 +2,20 @@
 
 Fuente compartida para Claude Code y OpenCode. Inicia la sesión en esta carpeta.
 
+## Dónde vive cada cosa
+
+Este repo es solo el motor de producción y se publica. Lo de Carlos vive en el repo
+privado `../canal/`: episodios (`canal/episodios/<slug>/`), bitácora, piezas y
+sketchbooks, identidad visual, dirección creativa e investigación. `taller.local.json`
+(ignorado por git) apunta la carpeta de proyectos a `../canal/episodios`, así que
+`npm run video -- list|new|studio|render` trabaja sobre esos episodios. Sin ese
+archivo, el taller usa su `projects/` local, donde solo está `demo`.
+
 ## Trabajo por módulos y sketchbook
 
-Carlos pidió un espacio `content-creator` para entrar por idea, guion, voz,
-subtítulos, sketchbook visual o producción sin recorrer todas las etapas.
-Consulta `../content-creator/README.md` si existe; mientras se traslada, está en
-`content-creator/README.md` dentro del taller. Lee solo el workflow necesario.
+Carlos pidió entrar por idea, guion, voz, subtítulos, sketchbook visual o producción
+sin recorrer todas las etapas. Los workflows están en `../canal/workflows/`; lee solo
+el necesario.
 
 Para explorar ideas y diseñar secuencias en el chat no hace falta slug ni Docker.
 Trabaja por cuadros clave y conserva las decisiones; no describas cada fotograma
@@ -19,8 +27,9 @@ La revisión editorial no autoriza renderizar ni reescribir el video completo.
 
 La lista 1–8 de abajo regula producción técnica dentro del taller, con las
 excepciones de alcance de este apartado. Las notas y bocetos del sketchbook
-pueden guardarse en `content-creator/piezas/`, en su ubicación vigente, sin crear
-un proyecto. El código y los recursos de producción permanecen en `projects/<slug>/`.
+se guardan en `../canal/piezas/` sin crear un proyecto. El código y los recursos de
+producción permanecen en la carpeta del episodio (`projects/<slug>/` en este texto
+equivale a `../canal/episodios/<slug>/` con la configuración local de Carlos).
 
 Para producción nueva, lee `PLAYBOOK.md`: historia y voz primero, piezas cortas con
 alcance definido, revisiones agrupadas y reutilización de exports aprobados. En una
@@ -58,15 +67,11 @@ Voz o subtítulos de un video: usa `.claude/skills/voz-whisper/SKILL.md`, sigue 
 
 ## Preferencias de Carlos para los guiones
 
-Guardadas por petición de Carlos el 2026-11-04:
-
-- Hablar de asuntos e ideas sin atribuir al espectador experiencias, problemas, deseos o hábitos. Evitar aperturas prefabricadas como «¿te ha pasado?», «seguro haces esto mal», «te pongo en contexto» o listas de «cinco cosas» usadas como fórmula de enganche.
-- Buscar entretenimiento en observaciones, preguntas reales, escenas concretas, contradicciones y explicaciones con humor. Conservar su voz coloquial e irreverente sin convertirla en discurso de gurú o anuncio de productividad.
-- No imponer a todos los videos la historia personal «quería algo, fracasé y aprendí». Puede explicar una rareza o desarrollar una idea sin inventar un conflicto ni una experiencia autobiográfica.
-- Carlos quiere libertad para hablar de temas distintos. Ayudarle a delimitar qué cuenta cada pieza sin obligarlo a elegir un único tema para toda la serie: una pregunta o idea central por video y una respuesta coherente con la apertura.
-- Antes de fabricar hooks, aclarar qué le parece interesante del asunto y qué quiere contar. Las técnicas de retención deben servir a esa intención y conservar su esencia.
+Viven en `../canal/direccion.md` (se cargan vía `AGENTS.local.md`). Resumen: hablar de
+asuntos e ideas sin atribuir vivencias al espectador, sin aperturas prefabricadas ni
+historia personal de fracaso por defecto; una idea central por video y la voz de Carlos.
 
 ## Notas locales
 
-Si existe `AGENTS.local.md` en esta carpeta, léelo también: contiene la dirección
-creativa y el contexto personal de Carlos. No se publica en el repositorio.
+Si existe `AGENTS.local.md` en esta carpeta, léelo también: importa la dirección
+creativa de `../canal/direccion.md`. Ni ese archivo ni `taller.local.json` se publican.

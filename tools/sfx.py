@@ -19,12 +19,24 @@ def fail(msg):
     sys.exit(f"sfx.py: {msg}")
 
 
+def projects_root():
+    """projects/ del taller, o la carpeta de VIDEO_PROJECTS / taller.local.json {"projects": ruta}."""
+    configured = os.environ.get("VIDEO_PROJECTS")
+    local = os.path.join(TALLER, "taller.local.json")
+    if not configured and os.path.isfile(local):
+        with open(local, encoding="utf-8") as f:
+            configured = json.load(f).get("projects")
+    if not configured:
+        return os.path.join(TALLER, "projects")
+    return os.path.realpath(os.path.join(TALLER, configured))
+
+
 def project_dir(slug):
     if not re.fullmatch(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*", slug):
         fail(f"slug inválido: {slug}")
-    path = os.path.join(TALLER, "projects", slug)
+    path = os.path.join(projects_root(), slug)
     if not os.path.isdir(path):
-        fail(f"no existe projects/{slug}")
+        fail(f"no existe el proyecto {slug} en {projects_root()}")
     return path
 
 

@@ -38,12 +38,24 @@ def ffmpeg(*args):
 
 
 # ---------- rutas ----------
+def raiz_proyectos():
+    """projects/ del taller, o la carpeta de VIDEO_PROJECTS / taller.local.json {"projects": ruta}."""
+    configurada = os.environ.get('VIDEO_PROJECTS')
+    local = os.path.join(ROOT, 'taller.local.json')
+    if not configurada and os.path.isfile(local):
+        with open(local, encoding='utf-8') as f:
+            configurada = json.load(f).get('projects')
+    if not configurada:
+        return os.path.join(ROOT, 'projects')
+    return os.path.realpath(os.path.join(ROOT, configurada))
+
+
 def proyecto(slug):
     if not SLUG_RE.match(slug or ''):
         die(f'slug invalido: {slug!r}')
-    p = os.path.join(ROOT, 'projects', slug)
+    p = os.path.join(raiz_proyectos(), slug)
     if not os.path.isfile(os.path.join(p, 'video.json')):
-        die(f'no existe el proyecto projects/{slug} (falta video.json)')
+        die(f'no existe el proyecto {slug} en {raiz_proyectos()} (falta video.json)')
     return p
 
 

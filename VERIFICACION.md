@@ -31,5 +31,5 @@ sus Studios detenidos. No elimina entregas ni volúmenes.
 
 La demo es muda y usa texto y geometría propios. No verifica audio, transcripción,
 generación de voz, recursos externos ni compatibilidad editorial con redes sociales.
-La investigación en `reports/` documenta esas ampliaciones; sus propuestas no son
+La investigación en `../canal/investigacion/reports/` documenta esas ampliaciones; sus propuestas no son
 resultados de ejecución. Para los comandos y carpetas implementados, usar `README.md`.

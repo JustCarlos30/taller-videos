@@ -65,4 +65,4 @@ El gesto empieza unos cuadros antes de la palabra y el impacto cae justo en ella
 
 ## Revisión
 
-Antes de aprobar: míralo en celular a velocidad normal y anota los defectos por segundo en `bitacora.md`.
+Antes de aprobar: míralo en celular a velocidad normal y anota los defectos por segundo en la bitácora del canal (`../canal/bitacora.md`).

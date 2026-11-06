@@ -11,13 +11,12 @@ sigue las reglas de [`AGENTS.md`](AGENTS.md), y también se puede usar a mano de
 
 ```text
 idea / guion  →  voz (grabación + whisper)  →  proyecto Remotion  →  Studio  →  render MP4
- content-creator/     tools/voz.py              projects/<slug>/     Docker     exports/
+ canal/piezas/        tools/voz.py              projects/<slug>/     Docker     exports/
 ```
 
 > **Nota:** el repositorio no incluye audio ni video (`.wav`, `.mp3`, `.mp4`, proyectos
-> de Audacity) ni los exports. Los proyectos de ejemplo traen su código, sus briefs y
-> sus imágenes, pero las voces y los efectos de sonido no vienen incluidos. Para
-> renderizarlos tal cual tienes que poner tu propio audio en `projects/<slug>/public/`.
+> de Audacity) ni los exports. El proyecto de ejemplo `demo` es mudo; los videos
+> reales de Carlos viven en un repo privado aparte (ver «Proyectos en otra carpeta»).
 
 ---
 
@@ -164,15 +163,26 @@ projects/<slug>/
   src/                   composiciones React del video
   public/                recursos propios, usados con staticFile()
   exports/               MP4 y metadatos de ffprobe (no versionados)
-content-creator/         espacio editorial: ideas, guiones y sketchbook visual
 .claude/skills/          skills del taller: motion, sonido, voz-whisper y cuestionar-guion
-skills-publicables/      versión publicable de esas skills
 PLAYBOOK.md              cómo planear y producir por piezas
 MOTION.md                gramática de movimiento (obligatoria antes de renderizar)
 VOZ.md                   detalle del pipeline de voz
-research_notes/, reports/  investigación de apoyo
 tests/                   tests de la CLI y verificación real con Docker
 ```
+
+### Proyectos en otra carpeta
+
+Por defecto los proyectos viven en `projects/`. Para guardarlos en otro sitio (por
+ejemplo, un repo privado con tus videos) crea `taller.local.json` en la raíz:
+
+```json
+{"projects": "../mis-videos/episodios"}
+```
+
+La ruta puede ser relativa a la raíz del taller y debe ser una carpeta real, no un
+enlace simbólico. La variable `VIDEO_PROJECTS` tiene prioridad sobre el archivo.
+`taller.local.json` está ignorado por git. Las skills genéricas, sin rutas del taller,
+están en [skills-videos-cortos](https://github.com/JustCarlos30/skills-videos-cortos).
 
 ---
 
@@ -226,7 +236,5 @@ seguirlas. Si existe `AGENTS.local.md` (ignorado por git), se carga como notas p
 - React (MIT), TypeScript (Apache-2.0) y Node, FFmpeg y Chrome, con sus propias condiciones.
 - Las fuentes tipográficas incluidas en `projects/*/public/` llevan su licencia al lado
   (por ejemplo `Archivo-OFL.txt`, SIL Open Font License).
-- El material de terceros en `research_notes/hooks-recursos/fuentes/` conserva su
-  licencia original (MIT) junto a cada fuente.
 - Los efectos de sonido de asset-vault no se distribuyen aquí. Revisa la licencia de cada
   pack antes de publicar un video.

@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtempSync, cpSync, readFileSync, writeFileSync, mkdirSync, symlinkSync, existsSync, rmSync} from 'node:fs';
+import {mkdtempSync, cpSync, readFileSync, writeFileSync, mkdirSync, symlinkSync, existsSync, rmSync, realpathSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createServer} from 'node:net';
@@ -72,6 +72,19 @@ test('rechaza symlinks de recursos, salidas y raíz de proyecto', async (t) => {
   mkdirSync(join(root, 'projects'));
   symlinkSync(join(root, 'template'), join(root, 'projects', 'enlace'));
   await assert.rejects(workshop.execute(['studio', 'enlace']), /simbólico/);
+});
+
+test('taller.local.json apunta la carpeta de proyectos a otra ruta real', async (t) => {
+  const {root, workshop} = fixture(t);
+  const external = mkdtempSync(join(tmpdir(), 'taller-canal-'));
+  t.after(() => rmSync(external, {recursive: true, force: true}));
+  writeFileSync(join(root, 'taller.local.json'), JSON.stringify({projects: external}));
+  const p = await workshop.execute(['new', 'uno']);
+  assert.equal(p.path, join(realpathSync(external), 'uno'));
+  assert.deepEqual(workshop.names(), ['uno']);
+  assert.ok(!existsSync(join(root, 'projects', 'uno')));
+  writeFileSync(join(root, 'taller.local.json'), JSON.stringify({projects: join(external, 'no-existe')}));
+  await assert.rejects(workshop.execute(['list']), /no encontrada/);
 });
 
 test('asigna puertos evitando reservas y sockets ocupados reales', async (t) => {
